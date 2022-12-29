@@ -40,22 +40,32 @@ function addBookToLibrary() {
   return;
 }
 
+function resetForm() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  pages.value = "";
+  readStatus.checked = false;
+}
+
 function createBookCard(book) {
   let bookCard = document.createElement("div");
   let title = document.createElement("h2");
   let author = document.createElement("h3");
   let pages = document.createElement("p");
   let readStatus = document.createElement("button");
+  let deleteBookButton = document.createElement("button");
 
   title.textContent = book.title;
   author.textContent = `by ${book.author}`;
   pages.textContent = `${book.pages} pages`;
   readStatus.textContent = book.readStatus ? "Read" : "Not read yet";
+  deleteBookButton.textContent = "Delete Book";
 
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
   bookCard.appendChild(readStatus);
+  bookCard.appendChild(deleteBookButton);
   bookCard.classList.add("card");
 
   cardContainer.appendChild(bookCard);
@@ -63,9 +73,22 @@ function createBookCard(book) {
   readStatus.addEventListener("click", () => {
     readStatus.textContent = book.toggleReadStatus();
   });
+
+  deleteBookButton.addEventListener("click", () => {
+    let index = Array.from(bookCard.parentNode.children).indexOf(bookCard);
+
+    if (index > -1) {
+      myLibrary.splice(index, 1);
+    }
+
+    if (cardContainer.hasChildNodes()) {
+      cardContainer.removeChild(cardContainer.children[index]);
+    }
+  });
 }
 
 formSubmitButton.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
+  resetForm();
 });
