@@ -1,6 +1,12 @@
 const cardContainer = document.querySelector(".main");
+const formSubmitButton = document.querySelector(".form-submit");
+let bookTitle = document.querySelector("#title");
+let bookAuthor = document.querySelector("#author");
+let pages = document.querySelector("#pages");
+let readStatus = document.querySelector("#read-status");
 
 let myLibrary = [];
+let book;
 
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -13,25 +19,33 @@ function Book(title, author, pages, readStatus) {
       readStatus ? "read" : "not read yet"
     }`;
   };
+
+  this.toggleReadStatus = function () {
+    this.readStatus = !this.readStatus;
+    return this.readStatus ? "Read" : "Not read yet";
+  };
 }
 
-function addBookToLibrary(book) {
+function addBookToLibrary() {
+  book = new Book(
+    bookTitle.value,
+    bookAuthor.value,
+    pages.value,
+    readStatus.checked
+  );
+
   myLibrary.push(book);
+  createBookCard(book);
+
   return;
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-const testBook = new Book("Test", "Mr. Test", 300, false);
-addBookToLibrary(theHobbit);
-addBookToLibrary(testBook);
-console.log(myLibrary);
-
-myLibrary.forEach((book) => {
+function createBookCard(book) {
   let bookCard = document.createElement("div");
   let title = document.createElement("h2");
   let author = document.createElement("h3");
   let pages = document.createElement("p");
-  let readStatus = document.createElement("p");
+  let readStatus = document.createElement("button");
 
   title.textContent = book.title;
   author.textContent = `by ${book.author}`;
@@ -45,4 +59,13 @@ myLibrary.forEach((book) => {
   bookCard.classList.add("card");
 
   cardContainer.appendChild(bookCard);
+
+  readStatus.addEventListener("click", () => {
+    readStatus.textContent = book.toggleReadStatus();
+  });
+}
+
+formSubmitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  addBookToLibrary();
 });
