@@ -19,12 +19,12 @@ function Book(title, author, pages, readStatus) {
       readStatus ? "read" : "not read yet"
     }`;
   };
-
-  this.toggleReadStatus = function () {
-    this.readStatus = !this.readStatus;
-    return this.readStatus ? "Read" : "Not read yet";
-  };
 }
+
+Book.prototype.toggleReadStatus = function () {
+  this.readStatus = !this.readStatus;
+  return this.readStatus ? "Read" : "Not read yet";
+};
 
 function addBookToLibrary() {
   book = new Book(
