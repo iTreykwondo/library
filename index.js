@@ -54,6 +54,7 @@ function createBookCard(book) {
   let pages = document.createElement("p");
   let readStatus = document.createElement("button");
   let deleteBookButton = document.createElement("button");
+  let buttonContainer = document.createElement("div");
 
   title.textContent = book.title;
   author.textContent = `by ${book.author}`;
@@ -64,8 +65,13 @@ function createBookCard(book) {
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
-  bookCard.appendChild(readStatus);
-  bookCard.appendChild(deleteBookButton);
+  buttonContainer.appendChild(readStatus);
+  buttonContainer.appendChild(deleteBookButton);
+  bookCard.appendChild(buttonContainer);
+
+  buttonContainer.classList.add("btn-container");
+  readStatus.classList.add("read-status-btn");
+  deleteBookButton.classList.add("delete-btn");
   bookCard.classList.add("card");
 
   cardContainer.appendChild(bookCard);
