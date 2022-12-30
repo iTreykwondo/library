@@ -29,6 +29,12 @@ form {
   padding: 20px 0 0 20px;
 }
 
+.sidebar h1 {
+  margin-bottom: 70px;
+  border-bottom: 2px solid black;
+  width: 28%;
+}
+
 .form-title,
 .form-author,
 .form-page,
@@ -38,16 +44,41 @@ form {
 }
 
 .main {
-  padding: 20px;
+  padding: 20px 40px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-content: stretch;
 }
 
 .card {
-  background-color: palevioletred;
   padding: 40px;
   max-width: 100%;
-
+  border: 2px solid palegreen;
   height: 20%;
+}
+
+.btn-container {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.read-status-btn,
+.form-submit button {
+  background-color: #22c55e;
+  border: 2px solid black;
+  padding: 3px 6px;
+}
+
+.delete-btn {
+  background-color: #dc2626;
+  border: 2px solid black;
+  padding: 3px 8px;
+}
+
+.delete-btn:hover,
+.read-status-btn:hover,
+.form-submit button:hover {
+  color: white;
 }
