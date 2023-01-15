@@ -8,23 +8,25 @@ let readStatus = document.querySelector("#read-status");
 let myLibrary = [];
 let book;
 
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
 
-  this.info = function () {
-    return `${title} by ${author}, ${pages} pages, ${
-      readStatus ? "read" : "not read yet"
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages} pages ${
+      readStatus ? "Read" : "Not read yet"
     }`;
-  };
-}
+  }
 
-Book.prototype.toggleReadStatus = function () {
-  this.readStatus = !this.readStatus;
-  return this.readStatus ? "Read" : "Not read yet";
-};
+  toggleReadStatus() {
+    this.readStatus = !this.readStatus;
+    return this.readStatus ? "Read" : "Not read yet";
+  }
+}
 
 function addBookToLibrary() {
   book = new Book(
