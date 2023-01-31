@@ -95,7 +95,7 @@ function createBookCard(book) {
   });
 }
 
-formSubmitButton.addEventListener("click", (e) => {
+formSubmitButton.addEventListener("submit", (e) => {
   e.preventDefault();
   addBookToLibrary();
   resetForm();
